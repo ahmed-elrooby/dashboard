@@ -5,6 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --semi-color:#8247FF;
+  --second-color:#EEF2FF;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,7 +18,13 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+background-color: #f1f5f9;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+td{
+padding: 10px 5px;
+}
+th{
+  padding: 5px 5px;
 }

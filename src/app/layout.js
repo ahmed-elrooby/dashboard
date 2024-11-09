@@ -1,16 +1,9 @@
-import localFont from "next/font/local";
+import Header from "@/Components/Header/Header";
 import "./globals.css";
+import Aside from "@/Components/Aside/Aside";
+import { Toaster } from "react-hot-toast";
+import ContexValue from "@/ContextData/ContexValue";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata = {
   title: "Create Next App",
@@ -21,9 +14,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ContexValue>
+          
+     
+        <Header />
+   
+     <div className="flex  items-start  ">
+      <Aside/>
+                <section className="w-full p-4     ">
+                    {children}
+                </section>
+            </div>
+            
+      </ContexValue>
+      <Toaster />
       </body>
     </html>
   );
