@@ -208,16 +208,23 @@ getInstructors()
 //get admin 
 const [userData, setUserData] = useState([])
 const getInstructorsAdmin = async () => {
-  const instrId = Cookies.get("instructorId");
-  const token = Cookies.get("tokenAdmin")
+  try{
+    const instrId = Cookies.get("instructorId");
+    const token = Cookies.get("tokenAdmin")
+  
+    const { data } = await axios.get(`${basUrl}/api/instructors/${instrId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    setUserData(data.data)
+    console.log(data.data)
+  } catch(err){
+    console.log(err)
+  }
+ 
 
-  const { data } = await axios.get(`${basUrl}/api/instructors/${instrId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  })
-  setUserData(data.data)
-  console.log(data.data)
+ 
 }
 useEffect(() => {
   getInstructorsAdmin()
@@ -227,9 +234,10 @@ useEffect(() => {
 //get cateogires
 const [categories, setCategories] = useState([]);
 const getCategories = async () => {
-  const token = Cookies.get("tokenAdmin");
 
   try {
+    const token = Cookies.get("tokenAdmin");
+
       const {data} = await axios.get(`${basUrl}/api/Category`, {
           headers: {
               Authorization: `Bearer ${token}`
@@ -239,7 +247,6 @@ const getCategories = async () => {
       console.log(data.data)
   } catch (error) {
       console.error("Error fetching categories:", error);
-      toast.error("Failed to fetch categories");
   }
 };
 
